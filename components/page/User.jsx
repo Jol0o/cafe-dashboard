@@ -1,0 +1,66 @@
+"use client";
+import { db, auth } from "@/firebase/firebase";
+import { deleteUser } from "firebase/auth";
+import { onSnapshot, collection } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { Alert, Table } from "react-bootstrap";
+import { BsTrash } from "react-icons/bs";
+function User() {
+  const [users, setUsers] = useState(null);
+  const [alert, setAlert] = useState(false);
+  useEffect(() => {
+    const coffee = onSnapshot(collection(db, "users"), (snapshot) =>
+      setUsers(snapshot.docs.map((e) => e.data()))
+    );
+    return () => {
+      coffee();
+    };
+  }, []);
+
+  const removeUser = async (id) => {
+    try {
+      await deleteUser(auth, id); // Call the deleteUser function with the auth instance and user's ID
+      setAlert(true);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
+  return (
+    <div className="product-container">
+      {alert && (
+        <Alert onClose={() => setAlert(false)} variant="primary" dismissible>
+          Delete User Success
+        </Alert>
+      )}
+      <h3>Users</h3>
+      {users && (
+        <Table bordered hover striped="columns" responsive variant="dark">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Image</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>{item.photo}</td>
+                <td>
+                  <BsTrash onClick={() => removeUser(item.id)} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
+    </div>
+  );
+}
+
+export default User;
