@@ -9,22 +9,23 @@ function User() {
   const [users, setUsers] = useState(null);
   const [alert, setAlert] = useState(false);
   useEffect(() => {
-    const coffee = onSnapshot(collection(db, "users"), (snapshot) =>
+    const user = onSnapshot(collection(db, "users"), (snapshot) =>
       setUsers(snapshot.docs.map((e) => e.data()))
     );
     return () => {
-      coffee();
+      user();
     };
   }, []);
 
-  const removeUser = async (id) => {
+  const removeUser = async (uid) => {
     try {
-      await deleteUser(auth, id); // Call the deleteUser function with the auth instance and user's ID
+      await deleteUser(auth, uid); // Call the deleteUser function with the auth instance and user's UID
       setAlert(true);
     } catch (error) {
       console.error("Error deleting user:", error);
     }
   };
+
   return (
     <div className="product-container">
       {alert && (
