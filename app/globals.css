@@ -174,7 +174,7 @@ a {
 
 .sidebar-container .sidebar-btns button {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
 }
@@ -204,9 +204,12 @@ a {
 
 .product-container .product-nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.product-nav h3 {
+  margin-right: 12px;
 }
 
 .modal-content {
@@ -266,6 +269,18 @@ a {
   width: clamp(250px, 100%, 500px);
 }
 
+.sidebar-container .sidebar-btns .sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.sidebar-container .sidebar-btns .sidebar-header img {
+  border-radius: 50%;
+}
+
+
 @media (max-width: 767px) {
   .sidebar-container {
     width: 70px;
@@ -279,6 +294,15 @@ a {
     display: none;
   }
 
+  .sidebar-container .sidebar-btns button {
+    justify-content: center;
+  }
+
+  .sidebar-container .sidebar-btns .sidebar-header {
+    
+    justify-content: center;
+
+  }
   
 }
 

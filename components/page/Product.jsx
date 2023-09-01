@@ -72,7 +72,6 @@ function Product() {
         <Table bordered hover striped="columns" responsive variant="dark">
           <thead>
             <tr>
-              <th>id</th>
               <th>Product name</th>
               <th>Description</th>
               <th>Image</th>
@@ -85,10 +84,18 @@ function Product() {
           <tbody>
             {coffee.map((item) => (
               <tr key={item.id}>
-                <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>{item.description.slice(0, 100)}</td>
-                <td>{item.imageUrl}</td>
+                <td>{item.description}</td>
+                <td>
+                  <img
+                    style={{
+                      maxHeight: "50px",
+                      maxWidth: "50px",
+                      borderRadius: "100%",
+                    }}
+                    src={item.imageUrl}
+                  ></img>
+                </td>
                 <td>{item.price}</td>
                 <td>{item.rating}</td>
                 <td>
@@ -103,10 +110,18 @@ function Product() {
             ))}
             {pastries.map((item) => (
               <tr key={item.id}>
-                <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>{item.description.slice(0, 100)}</td>
-                <td>{item.imageUrl}</td>
+                <td>{item.description}</td>
+                <td>
+                  <img
+                    style={{
+                      maxHeight: "50px",
+                      maxWidth: "50px",
+                      borderRadius: "100%",
+                    }}
+                    src={item.imageUrl}
+                  ></img>
+                </td>
                 <td>{item.price}</td>
                 <td>{item.rating}</td>
                 <td>

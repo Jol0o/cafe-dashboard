@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
         {!user ?
           <Login /> :
           <>
-            <Header />
+            {/* <Header /> */}
             <div className='dashboard-layout'>
               < Sidebar />
               {children}

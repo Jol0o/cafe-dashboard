@@ -38,22 +38,26 @@ function User() {
         <Table bordered hover striped="columns" responsive variant="dark">
           <thead>
             <tr>
-              <th>id</th>
               <th>Username</th>
               <th>Email</th>
               <th>Image</th>
-              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             {users.map((item) => (
               <tr key={item.id}>
-                <td>{item.id}</td>
                 <td>{item.name}</td>
                 <td>{item.email}</td>
-                <td>{item.photo}</td>
                 <td>
-                  <BsTrash onClick={() => removeUser(item.id)} />
+                  {" "}
+                  <img
+                    style={{
+                      maxHeight: "50px",
+                      maxWidth: "50px",
+                      borderRadius: "100%",
+                    }}
+                    src={item.photo}
+                  ></img>
                 </td>
               </tr>
             ))}
